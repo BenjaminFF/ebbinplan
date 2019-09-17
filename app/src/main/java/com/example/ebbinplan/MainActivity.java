@@ -5,12 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+import com.example.ebbinplan.tables.Plan;
+
+import org.litepal.LitePal;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,6 +30,11 @@ public class MainActivity extends AppCompatActivity {
 
         initToolbar();
 
+        List<Plan> plans = LitePal.where("name like ?","test").find(Plan.class);
+        /*int[] timeStamps=new int[] {111,222};
+        plans.get(0).setTimeStamps(timeStamps);
+        plans.get(0).save();*/
+        Toast.makeText(this,plans.get(0).toString(),Toast.LENGTH_LONG).show();
     }
 
     private void initToolbar() {
