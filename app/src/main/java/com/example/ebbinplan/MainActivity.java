@@ -5,15 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
-
-import com.example.ebbinplan.tables.Plan;
 
 import org.litepal.LitePal;
 
@@ -22,6 +27,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     Toolbar toolbar;
+    Dialog createPlanDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +35,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initToolbar();
-
-        List<Plan> plans = LitePal.where("name like ?","test").find(Plan.class);
-        /*int[] timeStamps=new int[] {111,222};
-        plans.get(0).setTimeStamps(timeStamps);
-        plans.get(0).save();*/
-        Toast.makeText(this,plans.get(0).toString(),Toast.LENGTH_LONG).show();
     }
 
     private void initToolbar() {
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.toolbar_add:
-                Toast.makeText(this, "add", Toast.LENGTH_SHORT).show();
+                showCreatePlanDialog();
                 break;
             case R.id.toolbar_filter:
                 showPopupMenu(findViewById(R.id.toolbar_filter));
@@ -82,5 +82,12 @@ public class MainActivity extends AppCompatActivity {
                 // 控件消失时的事件
             }
         });
+    }
+
+    private void showCreatePlanDialog(){
+        createPlanDialog=new CreatePlanDialog(MainActivity.this);
+        createPlanDialog.show();
+
+
     }
 }
