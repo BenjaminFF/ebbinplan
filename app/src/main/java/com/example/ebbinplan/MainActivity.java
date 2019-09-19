@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void initToolbar() {
         toolbar = findViewById(R.id.mtoolbar);
-        toolbar.setTitle("anbinplan");
         setSupportActionBar(toolbar);
     }
 

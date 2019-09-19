@@ -46,7 +46,7 @@ public class CreatePlanDialog extends Dialog {
         Window dialogWindow=getWindow();
         WindowManager.LayoutParams layoutParams = dialogWindow.getAttributes(); //获取当前对话框的参数值
         layoutParams.width = (int) (point.x * 0.9); //宽度设置为屏幕宽度的0.5
-        layoutParams.height = (int) (point.y * 0.5); //高度设置为屏幕高度的0.5
+        //layoutParams.height = (int) (point.y * 0.5); //高度设置为屏幕高度的0.5
         dialogWindow.setAttributes(layoutParams);
         dialogWindow.setGravity(Gravity.CENTER);
     }

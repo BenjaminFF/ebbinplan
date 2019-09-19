@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ebbinplan</string>
+
+    <!--    CreatePlanDialog-->
+    <string name="cpd_name">CREATE PLAN</string>
+    <string name="cpd_edit_name_hint">plan name</string>
+    <string name="cpd_period">PERIOD</string>
+    <string name="cancel_button">CANCEL</string>
+    <string name="confirm_button">CONFIRM</string>
+</resources>

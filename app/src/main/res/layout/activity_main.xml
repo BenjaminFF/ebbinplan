@@ -8,6 +8,7 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/mtoolbar"
+        app:title="@string/app_name"
         app:titleTextColor="?attr/actionMenuTextColor"
         android:background="?attr/colorPrimary"
         app:theme="@style/ToolbarTheme"

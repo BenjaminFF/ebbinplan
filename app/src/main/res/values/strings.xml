@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">ebbinplan</string>
+    <string name="app_name">艾宾浩斯计划</string>
+
+<!--    CreatePlanDialog-->
+    <string name="cpd_name">创建计划</string>
+    <string name="cpd_edit_name_hint">计划名称</string>
+    <string name="cpd_period">周期</string>
+    <string name="cancel_button">取消</string>
+    <string name="confirm_button">确定</string>
 </resources>
