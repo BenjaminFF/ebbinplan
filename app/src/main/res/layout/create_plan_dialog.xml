@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="@color/colorWhite"
-    android:layout_margin="18dp"
+    android:layout_margin="16dp"
     android:layout_height="match_parent">
     <TextView
         android:text="@string/cpd_name"
@@ -14,11 +14,12 @@
         android:layout_height="wrap_content">
     </TextView>
     <LinearLayout
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="24dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText
+            android:id="@+id/cpd_edit_name_text"
             app:theme="@style/MyEditText"
             android:textSize="16sp"
             android:hint="@string/cpd_edit_name_hint"
@@ -28,13 +29,13 @@
     </LinearLayout>
     <RelativeLayout
         android:layout_gravity="bottom"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="24dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
-            android:id="@+id/cpd_cancel"
-            android:layout_toLeftOf="@+id/cpd_confirm"
+            android:id="@+id/cpd_cancel_button"
+            android:layout_toLeftOf="@+id/cpd_confirm_button"
             android:minHeight="0dp"
             android:minWidth="0dp"
             style="?android:attr/borderlessButtonStyle"
@@ -43,7 +44,7 @@
             android:layout_height="wrap_content">
         </Button>
         <Button
-            android:id="@+id/cpd_confirm"
+            android:id="@+id/cpd_confirm_button"
             android:minHeight="0dp"
             android:minWidth="0dp"
             android:layout_alignParentRight="true"

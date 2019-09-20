@@ -7,4 +7,6 @@
     <string name="cpd_period">PERIOD</string>
     <string name="cancel_button">CANCEL</string>
     <string name="confirm_button">CONFIRM</string>
+    <string name="empty_error">plan name cannot be empty</string>
+    <string name="duplicate_error">plan name cannot be repeated</string>
 </resources>

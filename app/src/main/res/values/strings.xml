@@ -7,4 +7,6 @@
     <string name="cpd_period">周期</string>
     <string name="cancel_button">取消</string>
     <string name="confirm_button">确定</string>
+    <string name="empty_error">计划名不能为空</string>
+    <string name="duplicate_error">计划名不能重复</string>
 </resources>
