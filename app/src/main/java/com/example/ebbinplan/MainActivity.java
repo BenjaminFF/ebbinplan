@@ -4,63 +4,67 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.Html;
 import android.util.DisplayMetrics;
-import android.view.Display;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.ebbinplan.model.PlanItem;
-import com.example.ebbinplan.util.KeyboardUtil;
+import com.example.ebbinplan.planitem_list.MyAdapter;
 
 import org.litepal.LitePal;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.UUID;
-
-import static java.util.UUID.randomUUID;
 
 public class MainActivity extends AppCompatActivity {
 
-    Toolbar toolbar;
-    CreatePlanDialog createPlanDialog;
+    private Toolbar toolbar;
+    private CreatePlanDialog createPlanDialog;
+    private RecyclerView planItemsRecyclerView;
+    private MyAdapter myAdapter;
+    private List<PlanItem> planItems;
+    private long minOfTodayTimeStamp=LocalDateTime.now().with(LocalTime.MIN).toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        LitePal.getDatabase();
         initToolbar();
         initCreatePlanDialog();
-        LitePal.getDatabase();
+        initPlanItemsRecyclerView();
     }
 
     private void initToolbar() {
         toolbar = findViewById(R.id.mtoolbar);
         setSupportActionBar(toolbar);
+    }
+
+    private void initPlanItemsRecyclerView() {
+        planItems = LitePal.where("timestamp like ?", minOfTodayTimeStamp + 24 * 60 * 60 * 1000L + "").find(PlanItem.class);
+        planItemsRecyclerView = findViewById(R.id.planitems_recyclerview);
+        planItemsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        myAdapter = new MyAdapter(planItems);
+        planItemsRecyclerView.setAdapter(myAdapter);
     }
 
     @Override
@@ -84,13 +88,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void createPlan(String planName) {
         String randomUUID = UUID.randomUUID().toString();
-        Long minOfTodayTimeStamp = LocalDateTime.now().with(LocalTime.MIN).toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
         int[] dayInternals = new int[]{1, 2, 4, 7, 14, 21, 28};
         for (int i = 0; i < dayInternals.length; i++) {
             PlanItem planItem = new PlanItem();
             planItem.setName(planName);
             planItem.setPlanId(randomUUID);
-            planItem.setTimestamp(minOfTodayTimeStamp + dayInternals[i] * 24 * 60 * 60 *1000L);
+            planItem.setTimestamp(minOfTodayTimeStamp + dayInternals[i] * 24 * 60 * 60 * 1000L);
             planItem.save();
         }
     }
@@ -118,18 +121,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initCreatePlanDialog() {
-        final Activity mActivity=this;
+        final Activity mActivity = this;
         createPlanDialog = new CreatePlanDialog(MainActivity.this);
         createPlanDialog.setOnConfirmClickListener(new CreatePlanDialog.OnConfirmClickListener() {
             @Override
             public void onConfirmClick(String planName, EditText editText) {
-                if(planName.equals("")){
+                if (planName.equals("")) {
                     String string = getString(R.string.empty_error);
                     editText.setError(string);
                     return;
                 }
 
-                if(LitePal.where("name like ?",planName).find(PlanItem.class).size()!=0){
+                if (LitePal.where("name like ?", planName).find(PlanItem.class).size() != 0) {
                     String string = getString(R.string.duplicate_error);
                     editText.setError(string);
                     return;
@@ -148,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         createPlanDialog.dismiss();
                     }
-                },100);
+                }, 100);
             }
         });
     }

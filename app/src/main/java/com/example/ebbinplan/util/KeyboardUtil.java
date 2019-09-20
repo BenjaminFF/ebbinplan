@@ -35,7 +35,7 @@ public class KeyboardUtil {
      * 自动关闭软键盘
      * @param activity
      */
-    public static void closeKeybord(Activity activity) {
+    public static void closeKeyboard(Activity activity) {
         InputMethodManager imm =  (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
         if(imm != null) {
             imm.hideSoftInputFromWindow(activity.getWindow().getDecorView().getWindowToken(), 0);
