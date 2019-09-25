@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 int[] pics=new int[]{R.drawable.title_bg1,R.drawable.title_bg2, R.drawable.title_bg3,
-                        R.drawable.title_bg4,R.drawable.title_bg5,R.drawable.title_bg6};
+                        R.drawable.title_bg4,R.drawable.title_bg5,R.drawable.title_bg6,R.drawable.title_bg7};
                 int pic=pics[(int)(Math.random()*pics.length)];
                 Picasso.get().load(pic).into(titleImage, new Callback() {
                     @Override
