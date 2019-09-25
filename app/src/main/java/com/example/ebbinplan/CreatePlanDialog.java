@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.KeyboardShortcutGroup;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -24,6 +26,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.ebbinplan.util.KeyboardUtil;
+
+import org.litepal.LitePal;
 
 import java.util.List;
 
@@ -37,19 +41,32 @@ public class CreatePlanDialog extends Dialog {
     private OnConfirmClickListener onConfirmClickListener;//取消按钮被点击了的监听器
     private OnCancelClickListener onCancelClickListener;//确定按钮被点击了的监听器
 
-    public CreatePlanDialog(@NonNull Context context) {
+    public CreatePlanDialog(@NonNull final Context context) {
         super(context);
-        this.mContext = context;
-        initDialogSizeAndPosition();
+        mContext=context;
         setCanceledOnTouchOutside(false);
     }
 
-    public CreatePlanDialog(@NonNull Context context, int themeResId) {
+    public CreatePlanDialog(@NonNull final Context context, int themeResId) {
         super(context, themeResId);
+        setContentView(R.layout.create_plan_dialog);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         setContentView(R.layout.create_plan_dialog);
         initDialogSizeAndPosition();
-        setCanceledOnTouchOutside(false);
+        bindListener();
+
+        setOnShowListener(new OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                //Toast.makeText(getContext(),"show",Toast.LENGTH_LONG).show();
+                KeyboardUtil.showSoftInput(mContext,editNameText);
+            }
+        });
     }
 
     @Override
@@ -85,15 +102,6 @@ public class CreatePlanDialog extends Dialog {
 
     public interface OnCancelClickListener {
         void onCancelClick(EditText editText);
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.create_plan_dialog);
-        initDialogSizeAndPosition();
-        bindListener();
     }
 
     private void bindListener(){

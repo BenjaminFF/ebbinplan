@@ -28,7 +28,7 @@ public class KeyboardUtil {
                     }
                 });
             }
-        }, 200);
+        }, 100);
     }
 
     /**
@@ -46,7 +46,7 @@ public class KeyboardUtil {
      * 打开关闭相互切换
      * @param activity
      */
-    public static void hideKeyboard(Activity activity) {
+    public static void toggleKeyboard(Activity activity) {
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm.isActive()) {
             if (activity.getCurrentFocus().getWindowToken() != null) {

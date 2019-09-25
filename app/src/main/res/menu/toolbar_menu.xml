@@ -2,13 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/toolbar_add"
-        android:icon="@drawable/ic_add_24dp"
-        android:title="添加"
-        android:orderInCategory="0"
-        app:showAsAction="always" />
-
-    <item
         android:id="@+id/toolbar_filter"
         android:icon="@drawable/ic_filter_list_24dp"
         android:title="过滤"

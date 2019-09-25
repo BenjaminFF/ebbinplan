@@ -7,4 +7,7 @@
     <color name="illuminating_emerald">#1A936F</color>
     <color name="ETON_BLUE">#88D498</color>
     <color name="colorBlack">#000000</color>
+    <color name="navyBlue">#273BA7</color>
+    <color name="antiFlashWhite">#EDF2F4</color>
+    <color name="colorTransparent">#00000000</color>
 </resources>

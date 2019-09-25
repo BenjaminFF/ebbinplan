@@ -6,7 +6,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:statusBarColor">@color/colorPrimary</item>
+        <item name="android:windowTranslucentStatus">false</item>
+<!--        <item name="android:windowTranslucentNavigation">true</item>-->
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
     <!-- toolbar菜单样式 -->
@@ -14,7 +16,7 @@
         <!-- toolbar text color-->
         <item name="actionMenuTextColor">@android:color/white</item>
         <!-- toolbar background color-->
-        <item name="colorPrimary">@color/illuminating_emerald</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
         <!-- toolbar icon color -->
         <item name="colorControlNormal">@color/colorWhite</item>
     </style>
