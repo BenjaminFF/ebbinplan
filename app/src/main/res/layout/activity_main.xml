@@ -7,14 +7,40 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:scaleType="centerCrop"
+        android:scaleType="fitStart"
         android:id="@+id/title_image"
         android:layout_width="match_parent"
-        android:layout_height="260dp">
+        android:layout_height="wrap_content">
     </ImageView>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <LinearLayout
+        android:id="@+id/mode_layout"
         android:layout_below="@+id/title_image"
+        android:layout_width="match_parent"
+        android:background="@color/lightBlue"
+        android:layout_height="40dp">
+        <com.andexert.library.RippleView
+            android:id="@+id/mPlanRippleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:rv_alpha="120"
+            app:rv_rippleDuration="400"
+            app:rv_centered="false">
+            <TextView
+                android:text="今日计划"
+                android:id="@+id/planTextView"
+                android:textColor="@color/colorWhite"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </TextView>
+        </com.andexert.library.RippleView>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@+id/mode_layout"
         android:id="@+id/planitems_recyclerview"
         android:background="@color/antiFlashWhite"
         android:layout_width="match_parent"
@@ -35,10 +61,10 @@
     <TextView
         android:id="@+id/main_item_empty_text"
         android:visibility="invisible"
-        android:text="暂无今日计划"
-        android:layout_below="@+id/title_image"
+        android:text="暂无数据"
+        android:layout_below="@+id/mode_layout"
         android:layout_centerHorizontal="true"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:layout_marginTop="164dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">

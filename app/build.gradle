@@ -33,4 +33,5 @@ dependencies {
     compile 'com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1'
     implementation("com.squareup.okhttp3:okhttp:4.2.0")
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.patrickpissurno:ripple-effect:1.3.1'
 }

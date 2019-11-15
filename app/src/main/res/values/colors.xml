@@ -10,4 +10,5 @@
     <color name="navyBlue">#273BA7</color>
     <color name="antiFlashWhite">#EDF2F4</color>
     <color name="colorTransparent">#00000000</color>
+    <color name="lightBlue">#00b0ff</color>
 </resources>

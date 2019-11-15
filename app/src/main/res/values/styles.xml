@@ -22,6 +22,6 @@
     </style>
 
     <style name="MyEditText">
-        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="colorAccent">@color/lightBlue</item>
     </style>
 </resources>
