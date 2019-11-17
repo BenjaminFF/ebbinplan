@@ -67,9 +67,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
             @Override
             public void onClick(View v) {
                 final String deletedId=planItems.get(position).getId()+"";
-                LitePal.delete(PlanItem.class,planItems.get(position).getId());
-                planItems.remove(position);
-                notifyItemRemoved(position);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {

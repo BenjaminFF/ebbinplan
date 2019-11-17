@@ -9,8 +9,11 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Layout;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -53,6 +56,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        View view = findViewById(android.R.id.content);
+        Animation mLoadAnimation = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_in);
+        mLoadAnimation.setDuration(2000);
+        view.startAnimation(mLoadAnimation);
+
         LitePal.getDatabase();
         //LitePal.deleteAll(PlanItem.class);
         initTitle();
@@ -70,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
         Picasso.get().load(pic).into(titleImage, new Callback() {
             @Override
             public void onSuccess() {
+                View mainLayout=findViewById(R.id.main_layout);
+                mainLayout.setVisibility(View.VISIBLE);
                 initCreatePlanDialog();
                 initRipple();
                 initPlanItemsRecyclerView();
@@ -115,6 +125,13 @@ public class MainActivity extends AppCompatActivity {
         myAdapter.setOnDeleteItemListener(new MyAdapter.OnDeleteItemListener() {
             @Override
             public void onDeleteItem(int position) {
+                if(isTodayPlan){
+                    LitePal.delete(PlanItem.class,planItems.get(position).getId());
+                }else {
+                    LitePal.deleteAll(PlanItem.class,"planId=?", planItems.get(position).getPlanId()+"");
+                }
+                planItems.remove(position);
+                myAdapter.notifyItemRemoved(position);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {

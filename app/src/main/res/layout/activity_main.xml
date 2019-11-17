@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main_layout"
+    android:visibility="invisible"
     tools:context=".MainActivity">
 
     <ImageView
@@ -16,13 +18,14 @@
     <LinearLayout
         android:id="@+id/mode_layout"
         android:layout_below="@+id/title_image"
+        android:background="@color/antiFlashWhite"
         android:layout_width="match_parent"
-        android:background="@color/lightBlue"
         android:layout_height="40dp">
         <com.andexert.library.RippleView
             android:id="@+id/mPlanRippleView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/lightBlue"
             app:rv_alpha="120"
             app:rv_rippleDuration="400"
             app:rv_centered="false">
