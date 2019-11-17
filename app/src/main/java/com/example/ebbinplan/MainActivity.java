@@ -71,9 +71,9 @@ public class MainActivity extends AppCompatActivity {
     private void initTitle() {
         titleImage = findViewById(R.id.title_image);
         titleImage.setAdjustViewBounds(true);
-        int[] pics = new int[]{R.mipmap.header_bg1, R.mipmap.header_bg2,
-                R.mipmap.header_bg1, R.mipmap.header_bg4,
-                R.mipmap.header_bg5, R.mipmap.header_bg6, R.mipmap.header_bg7, R.mipmap.header_bg8};
+        int[] pics = new int[]{R.mipmap.header_bg2,
+                R.mipmap.header_bg3, R.mipmap.header_bg4,
+                R.mipmap.header_bg5, R.mipmap.header_bg6, R.mipmap.header_bg7};
         int pic = pics[(int) (Math.random() * pics.length)];
         Picasso.get().load(pic).into(titleImage, new Callback() {
             @Override
