@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
         View view = findViewById(android.R.id.content);
         Animation mLoadAnimation = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_in);
-        mLoadAnimation.setDuration(2000);
+        mLoadAnimation.setDuration(1000);
         view.startAnimation(mLoadAnimation);
 
         LitePal.getDatabase();
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         Picasso.get().load(pic).into(titleImage, new Callback() {
             @Override
             public void onSuccess() {
-                View mainLayout=findViewById(R.id.main_layout);
+                View mainLayout = findViewById(R.id.main_layout);
                 mainLayout.setVisibility(View.VISIBLE);
                 initCreatePlanDialog();
                 initRipple();
@@ -125,10 +125,10 @@ public class MainActivity extends AppCompatActivity {
         myAdapter.setOnDeleteItemListener(new MyAdapter.OnDeleteItemListener() {
             @Override
             public void onDeleteItem(int position) {
-                if(isTodayPlan){
-                    LitePal.delete(PlanItem.class,planItems.get(position).getId());
-                }else {
-                    LitePal.deleteAll(PlanItem.class,"planId=?", planItems.get(position).getPlanId()+"");
+                if (isTodayPlan) {
+                    LitePal.delete(PlanItem.class, planItems.get(position).getId());
+                } else {
+                    LitePal.deleteAll(PlanItem.class, "planId=?", planItems.get(position).getPlanId() + "");
                 }
                 planItems.remove(position);
                 myAdapter.notifyItemRemoved(position);
@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
     public void createPlan(String planName) {
         String randomUUID = UUID.randomUUID().toString();
         int[] dayInternals = new int[]{0, 1, 2, 4, 7, 14, 21, 28};
-        for (int i = 0; i < dayInternals.length; i++) {
+        for (int i = 0; i < (isTodayPlan ? 1 : dayInternals.length); i++) {
             PlanItem planItem = new PlanItem();
             planItem.setName(planName);
             planItem.setPlanId(randomUUID);
